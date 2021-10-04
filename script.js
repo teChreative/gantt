@@ -1,21 +1,36 @@
-
-
 function createChart(e) {
-  // 1 - Grab two lists
   const days = document.querySelectorAll(".chart-values li");
   const tasks = document.querySelectorAll(".chart-bars li");
-  // 2 - Convert list into an array
   const daysArray = [...days];
-  // 3 - Loop through
+  
   tasks.forEach(el => {
-    const duration = el.CDATA_SECTION_NODE.duration.split("-");
+    const duration = el.dataset.duration.split("-");
     const startDay = duration[0];
     const endDay = duration[1];
     let left = 0, width = 0;
 
-    if (startDay.endsWith("1/2")) {
+    if (startDay.endsWith("½")) {
       const filteredArray = daysArray.filter(day => day.textContent == startDay.slice(0, -1));
       left = filteredArray[0].offsetLeft + filteredArray[0].offsetWidth / 2;
+    } else {
+      const filteredArray = daysArray.filter(day => day.textContent == startDay);
+      left = filteredArray[0].offsetLeft;
+    }
+
+    if (endDay.endsWith("½")) {
+      const filteredArray = daysArray.filter(day => day.textContent == endDay.slice(0, -1));
+      width = filteredArray[0].offsetLeft + filteredArray[0].offsetWidth / 2 - left;
+    } else {
+      const filteredArray = daysArray.filter(day => day.textContent == endDay);
+      width = filteredArray[0].offsetLeft + filteredArray[0].offsetWidth - left;
+    }
+
+    // Styles
+    el.style.left = `${left}px`;
+    el.style.width = `${width}px`;
+    if (e.type == "load") {
+      el.style.backgroundColor = el.dataset.color;
+      el.style.opacity = 1;
     }
   });
 
