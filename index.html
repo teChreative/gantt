@@ -8,6 +8,34 @@
   <title>Document</title>
 </head>
 <body>
+  <header>
+    <form id="task-form">
+      <div class="form-group">
+          <input type="text" name="task-name" placeholder="Enter Task Name" />
+      </div>
+      <div class="form-group">
+          <select name="day-start" class="select-dropdown">
+            <option value="" disabled selected>Start Date</option>
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thu">Thu</option>
+            <option value="Fri">Fri</option>
+          </select>
+          <select name="day-end" class="select-dropdown">
+            <option value="" disabled selected>End Date</option>
+            <option value="Mon">Mon</option>
+            <option value="Tue">Tue</option>
+            <option value="Wed">Wed</option>
+            <option value="Thu">Thu</option>
+            <option value="Fri">Fri</option>
+          </select>
+      </div>
+      <div class="form-group">
+        <button class="btn" id="save-task" type="submit">Add Task</button>
+      </div>
+    </form>
+  </header>
   <div class="chart-wrapper">
     <ul class="chart-values">
       <li>sun</li>
@@ -18,13 +46,9 @@
       <li>fri</li>
       <li>sat</li>
     </ul>
-    <!-- <ul class="chart-bars">
-      <li data-duration="tues-wed" data-color="#b03532">Task</li>
-      <li data-duration="wed-sat" data-color="33a8a5">Task</li>
-    </ul> -->
-    <ul class="chart-bars">
-      <li data-duration="tue-wed" data-color="#b03532">Task</li>
-      <li data-duration="wed-sat" data-color="#33a8a5">Task</li>
+    <ul class="chart-bars" id="tasks-to-do">
+      <li data-duration="tue-wed" data-color="#b03532" class="task-item">Canned Task</li>
+      <li data-duration="wed-sat" data-color="#33a8a5" class="task-item">Canned Task</li>
     </ul>
   </div>
   <script src="script.js"></script>
